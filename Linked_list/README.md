@@ -45,13 +45,13 @@ This repository contains an implementation of a singly linked list in C. The imp
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/yourusername/linked_list_c.git
+   git clone https://github.com/ForkFiesta/Data_Structures_Algorithms_in_C.git
    ```
 
 2. Navigate to the project directory:
 
    ```sh
-   cd linked_list_c
+   cd Linked_list
    ```
 
 3. Compile the program:
