@@ -210,7 +210,7 @@ int remove_from_index(list *lst, int index){
     }
     int counter = 0;
     node *p = lst->head;
-    while(counter != index-1){
+    while(counter != index){
         p = p->next;
         counter++;
     }
@@ -244,11 +244,6 @@ int get_value_from_index(list *lst, int index){
     
 
 }
-
-
-
-
-
 
 
 
@@ -450,7 +445,7 @@ void test_find_largest(){
 
 
 void test_remove_from_index(){
-    printf("Testing Remove from Index...\033[0m\n");
+    printf("Testing Remove from Index...\n");
     list *test = initialize_list();
     push(test, 3);
     push(test, 5);
@@ -459,7 +454,7 @@ void test_remove_from_index(){
     push(test, 7);
     push(test, 12);
     push(test, 3);
-    assert(remove_from_index(test, 1) == 12);
+    assert(remove_from_index(test,2)==7);
     destroy_list(test);
 
 }
@@ -480,7 +475,7 @@ void test_get_value_from_index(){
 }
 
 void test_remove_from_index_edge_cases(){
-    printf("Testing Remove from Index edge cases...\n");
+    printf("Testing Remove from Index edge cases...\033[0m\n");
     list *test = initialize_list();
     assert(remove_from_index(test, 0) == -1);  // Out-of-bounds on empty list
     
