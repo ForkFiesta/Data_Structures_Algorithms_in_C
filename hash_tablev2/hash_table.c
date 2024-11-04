@@ -28,7 +28,7 @@ unsigned int hash_function(const char *key, const int tbl_cap);
 
 bool hasKey(hash_table *tbl, char *key);
 
-
+char *get(hash_table *tbl, char *key);
 
 
 hash_table *initialize_table(){
@@ -86,6 +86,31 @@ bool hasKey(hash_table *tbl, char *key){
 
 }
 
+
+char *get(hash_table *tbl, char *key){
+    if(strcmp("", key)==0){
+        return NULL;
+    }
+
+    key_value_pair kv = tbl->array[hash_function(key,tbl->capacity)];
+    if(strcmp(kv.key, "")== 0){
+        return NULL;
+    }else{
+        key_value_pair *curr = &kv;
+        key_value_pair *prev = NULL;
+        while(curr!=NULL && strcmp(curr->key, key)!=0){
+            prev = curr;
+            curr = curr->next;
+        }
+        if(curr != NULL && strcmp(curr->key, key)==0){
+            return curr->value;
+        }
+    }
+
+    return NULL;
+    
+
+}
 
 
 void memory_error_close(){
