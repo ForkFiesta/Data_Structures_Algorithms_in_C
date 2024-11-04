@@ -30,6 +30,8 @@ bool hasKey(hash_table *tbl, char *key);
 
 char *get(hash_table *tbl, char *key);
 
+bool set(key_value_pair *data, const int capacity, char *key, char *value);
+
 
 hash_table *initialize_table(){
     hash_table *tbl = malloc(sizeof(hash_table));
@@ -109,6 +111,52 @@ char *get(hash_table *tbl, char *key){
 
     return NULL;
     
+
+}
+
+bool set(key_value_pair *data, const int capacity, char *key, char *value){
+    if(strcmp(key, "") == 0) return;
+    if(strcmp(value, "") == 0) return;
+    key_value_pair kv = data[hash_function(key , capacity)];
+    if(strcmp(kv.key, "")==0){
+        strcpy(kv.key, key);
+        strcpy(kv.value, value);
+        kv.next = NULL;
+        return true;
+    }else{
+        key_value_pair *curr = &kv;
+        key_value_pair *prev = NULL;
+
+        while(curr!=NULL){
+            prev = curr;
+            curr = curr->next;
+        }
+        if(curr == NULL){
+            strcpy(prev->key, key);
+            strcpy(prev->value, value);
+            prev->next = NULL;
+            return false;
+        }
+    }
+}
+
+bool check_for_resize(hash_table *tbl){
+    if(((float)tbl->size / (float)tbl->capacity)>=.75){
+        upsize(tbl);
+    }
+}
+
+void upsize(hash_table *tbl){
+    tbl->capacity *= 2;
+    key_value_pair *new_data = malloc(sizeof(key_value_pair)*(tbl->capacity));
+    for(int i = 0; i<tbl->size; i++){
+        if(strcmp(tbl->array[i].key, "") != 0){
+            key_value_pair *p = &tbl->array[i];
+            while(p->next != NULL){
+                set(new_data, tbl->capacity, p->key, p->value);
+            }
+        }
+    }
 
 }
 
