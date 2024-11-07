@@ -23,6 +23,23 @@ int binary_search(int *arr, int n, int target);
 
 This function takes a pointer to the array `arr`, the number of elements in the array `n`, and the `target` value to search for. It returns the index of the target value if found, otherwise, it returns -1.
 
+## Unit Tests
+
+The following unit tests are included to verify the correctness of the binary search implementation:
+
+- `test_binary_search_found`: Tests if the function correctly finds an element in the array.
+- `test_binary_search_not_found`: Tests if the function correctly returns -1 when the element is not in the array.
+- `test_binary_search_empty_array`: Tests if the function correctly handles an empty array.
+- `test_binary_search_null_array`: Tests if the function correctly handles a null array.
+- `test_binary_search_single_element_found`: Tests if the function correctly finds an element in a single-element array.
+- `test_binary_search_single_element_not_found`: Tests if the function correctly returns -1 when the single element is not the target.
+- `test_binary_search_first_element`: Tests if the function correctly finds the first element in the array.
+- `test_binary_search_last_element`: Tests if the function correctly finds the last element in the array.
+- `test_binary_search_duplicates`: Tests if the function correctly handles arrays with duplicate elements.
+- `test_binary_search_negative_numbers`: Tests if the function correctly handles arrays with negative numbers.
+- `test_binary_search_large_array`: Tests if the function correctly handles a large array.
+- `test_binary_search_middle_element`: Tests if the function correctly finds the middle element in the array.
+
 ## Running the Tests
 
 To compile and run the tests, use the following commands:
