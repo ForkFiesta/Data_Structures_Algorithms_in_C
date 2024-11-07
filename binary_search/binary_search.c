@@ -13,7 +13,7 @@ int binary_search(int *arr, int n, int target){
     int high = n-1;
 
     while(low <= high){
-        mid = (high + low) / 2;
+        mid = low + (high-low) / 2;
         if(arr[mid]== target){
             return mid;
         }else if (arr[mid] > target){
