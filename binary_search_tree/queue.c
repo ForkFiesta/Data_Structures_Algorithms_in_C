@@ -37,7 +37,7 @@ void enqueue(Queue *queue, BSTNode *bstnode){
 }
 
 BSTNode* dequeue(Queue *queue){
-    if(queue->front == NULL) return;
+    if(queue->front == NULL) return NULL;
     QueueNode* temp = queue->front;
     BSTNode* node = temp->node;
     queue->front = queue->front->next;

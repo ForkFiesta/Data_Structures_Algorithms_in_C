@@ -5,19 +5,22 @@
 #include "queue.h"
 
 
-
-
-
 BSTNode *create_node(){
     BSTNode *new_node = malloc(sizeof(BSTNode));
-    check_null(new_node);
+    if(new_node == NULL){
+        fprintf(stderr, "Error allocating memory.\n");
+        exit(1);
+    }
     return new_node;
 }
 
 
 void insert(BSTNode *root, int data){
     BSTNode *new_node = create_node();
-    check_null(new_node);
+    if(new_node == NULL){
+        fprintf(stderr, "error allocating memory.\n");
+        exit(1);
+    }
     new_node->data = data;
     if(root == NULL){
         new_node->left = NULL;
@@ -31,12 +34,13 @@ void insert(BSTNode *root, int data){
     }
 }
 bool search(BSTNode *root, int target){
-    check_null(root);
+    if(root == NULL){
+        fprintf(stderr,"No node passed into search\n");
+        return false;
+    }
     if(root->data == target) return true;
-    else if (target < root->data) search(root->left, target);
-    else search(root->right, target);
-    return false;
-
+    else if (target < root->data) return search(root->left, target);
+    else return search(root->right, target);
 }
 int findMin(BSTNode *root){
     if(!root){
@@ -131,13 +135,13 @@ void DFS_PostOrder(BSTNode *root){
 
 
 bool isSubTreeLesser(BSTNode *root, int value){
-    if(root == NULL) return;
+    if(root == NULL) return true;
     if(root->data <= value && isSubTreeLesser(root->left, value) && isSubTreeLesser(root->right, value)) return true;
     else return false;
 }
 
 bool isSubTreeGreater(BSTNode *root, int value){
-    if(root == NULL) return;
+    if(root == NULL) return true;
     if(root->data >= value 
     && isSubTreeGreater(root->left, value) 
     && isSubTreeGreater(root->right, value))
@@ -197,12 +201,5 @@ void destroyTree(BSTNode *root){
     free(root);
 }
 
-
-void check_null(void *ptr){
-    if(!ptr){
-        fprintf(stderr,"Error allocating memory.\n");
-        exit(EXIT_FAILURE);
-    }
-}
 
 

@@ -9,9 +9,10 @@ typedef struct BSTNode{
 }BSTNode;
 
 
+typedef struct Root{
+    BSTNode *node;
+}Root;
 
-
-BSTNode *initialize_root();
 BSTNode *create_node();
 void insert(BSTNode *root, int data);
 bool search(BSTNode *root, int target);
